@@ -1,5 +1,5 @@
 package org.example.schoolmanagement.service;
 
-public interface StudentServiceInterface {
+public class StudentClassService {
 
 }

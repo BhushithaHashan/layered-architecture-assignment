@@ -11,8 +11,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.schoolmanagement.dto.UserDTO;
+import org.example.schoolmanagement.facad.UserFacad;
+import org.example.schoolmanagement.facad.UserFacadInterface;
 import org.example.schoolmanagement.model.UserModel;
+import org.example.schoolmanagement.service.ServiceFactory;
+import org.example.schoolmanagement.service.ValidatorInterface;
 import org.example.schoolmanagement.util.Role;
+import org.example.schoolmanagement.util.SERVICES;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -60,6 +65,8 @@ public class NewAddUserController {
     @FXML
     private Button user;
 
+    private UserFacadInterface userFacad = new UserFacad();
+    private ValidatorInterface validator = ServiceFactory.getService(SERVICES.VALIDATESERVICE, null, null);
 
     @FXML
     void addUsr(ActionEvent event) {
@@ -67,50 +74,81 @@ public class NewAddUserController {
         String userMail = email.getText();
         String password = pass.getText();
         String confirmPass = confirmPassField.getText();
-
-        if(userName.isEmpty()||userMail.isEmpty()||password.isEmpty()||confirmPass.isEmpty()){
+        UserDTO user = new UserDTO();
+        if(validator.isEmpty(userName)||validator.isEmpty(userMail)||validator.isEmpty(password)||validator.isEmpty(confirmPass)){
             showAlert("Empty Fields Found","Fields Cannot be empty!", Alert.AlertType.ERROR);
-            pass.clear();
-            confirmPassField.clear();
+            return;
         }
-        String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        // if(userName.isEmpty()||userMail.isEmpty()||password.isEmpty()||confirmPass.isEmpty()){
+        //     showAlert("Empty Fields Found","Fields Cannot be empty!", Alert.AlertType.ERROR);
+        //     pass.clear();
+        //     confirmPassField.clear();
+        // }
+        //String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
-
-        if(!Pattern.matches(EMAIL_REGEX, userMail)){
+        if (!validator.validateEmail(userMail)) {
             showAlert("Invalid Email","Enter a valid E-mail!", Alert.AlertType.ERROR);
-            pass.clear();
-            confirmPassField.clear();
+            return;
         }
-        if(!password.equals(confirmPass)){
+        // if(!Pattern.matches(EMAIL_REGEX, userMail)){
+        //     showAlert("Invalid Email","Enter a valid E-mail!", Alert.AlertType.ERROR);
+        //     pass.clear();
+        //     confirmPassField.clear();
+        // }
+        if (!validator.validatePasswordMatch(password, confirmPass)) {
             showAlert("Password not match with Comfirm Password","Make sure the Password & Confirm Password fields are matching!", Alert.AlertType.ERROR);
             confirmPassField.clear();
             pass.clear();
-        }else {
-            UserDTO user = new UserDTO();
+            return;
+        }else{
             user.setUsername(userName);
             user.setEmail(userMail);
             user.setPassword(password);
             user.setRole(Role.ADMIN);
             user.setSpecificAttribute(null);
-
-            UserModel userModel = new UserModel();
-            List<UserDTO> users = userModel.getAllUsers();
-            for(UserDTO currentuser:users){
-                if(currentuser.getUsername().equals(user.getUsername())){
-                    showAlert("User Not Added","User Name Already Taken", Alert.AlertType.ERROR);
-                    user = null;
-                    break;
-                }
-            }
-            if(user!=null){
-                userModel.addUser(user);
+            if (userFacad.addUser(user)) {
+                pass.clear();
+                confirmPassField.clear();
+                name.clear();
+                email.clear();
                 showAlert("User Added","user added successfully", Alert.AlertType.ERROR);
+            }else{
+                showAlert("User Not Added","User Name Already Taken", Alert.AlertType.ERROR);
             }
 
-
-
-
+            
         }
+
+        // if(!password.equals(confirmPass)){
+        //     showAlert("Password not match with Comfirm Password","Make sure the Password & Confirm Password fields are matching!", Alert.AlertType.ERROR);
+        //     confirmPassField.clear();
+        //     pass.clear();
+        // }else {
+        //     UserDTO user = new UserDTO();
+        //     user.setUsername(userName);
+        //     user.setEmail(userMail);
+        //     user.setPassword(password);
+        //     user.setRole(Role.ADMIN);
+        //     user.setSpecificAttribute(null);
+
+        //     UserModel userModel = new UserModel();
+        //     List<UserDTO> users = userModel.getAllUsers();
+        //     for(UserDTO currentuser:users){
+        //         if(currentuser.getUsername().equals(user.getUsername())){
+        //             showAlert("User Not Added","User Name Already Taken", Alert.AlertType.ERROR);
+        //             user = null;
+        //             break;
+        //         }
+        //     }
+        //     if(user!=null){
+        //         userModel.addUser(user);
+        //         showAlert("User Added","user added successfully", Alert.AlertType.ERROR);
+        //     }
+
+
+
+
+        // }
     }
 
     private void showAlert(String title, String message, Alert.AlertType type) {
@@ -118,7 +156,7 @@ public class NewAddUserController {
         alert.setTitle(title);
         alert.getDialogPane().setStyle("-fx-background-color: #f4f4f9; -fx-font-family: 'Arial'; -fx-font-size: 14px;");
 
-        alert.setHeaderText("Register failed");
+        alert.setHeaderText("Register User");
         alert.setContentText(message);
         alert.showAndWait();
     }

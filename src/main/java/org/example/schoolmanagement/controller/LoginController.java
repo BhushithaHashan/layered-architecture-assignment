@@ -7,8 +7,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.schoolmanagement.dto.Event;
 import org.example.schoolmanagement.dto.UserDTO;
+import org.example.schoolmanagement.facad.UserFacad;
 import org.example.schoolmanagement.model.EventModel;
 import org.example.schoolmanagement.model.UserModel;
+import org.example.schoolmanagement.service.ServiceFactory;
+import org.example.schoolmanagement.service.ValidateService;
+import org.example.schoolmanagement.service.ValidatorInterface;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import org.example.schoolmanagement.util.Role;
+import org.example.schoolmanagement.util.SERVICES;
 
 import java.io.IOException;
 
@@ -66,32 +71,34 @@ public class LoginController {
 
 
     private UserModel userModel = new UserModel();
-
-
+    private ValidatorInterface validator = ServiceFactory.getService(SERVICES.VALIDATESERVICE, null, null);
+    private UserFacad userFacad = new UserFacad();
     @FXML
     void login(ActionEvent event) {
         String username = namefield.getText();
         String password = passwordField.getText();
 
-
-        if (username.isEmpty() || password.isEmpty()) {
+        
+        // if (username.isEmpty() || password.isEmpty()) {
+        //     showAlert("Error", "Username and password must not be empty!", AlertType.ERROR);
+        //     return;
+        // }
+        if (validator.isEmpty(password) || validator.isEmpty(username)) {
             showAlert("Error", "Username and password must not be empty!", AlertType.ERROR);
             return;
         }
-
-
-        UserDTO userDTO = userModel.getUserByUsername(username);
-
-        if (userDTO != null && userDTO.getPassword().equals(password)) {
-
+        UserDTO usr = new UserDTO();
+        usr.setPassword(password);
+        usr.setUsername(username);
+        if (userFacad.authenticate(usr)) {
+            UserDTO userDTO = userFacad.getUserbyName(username);
             openMainScreen(userDTO,event);
             Event eventLogger = new Event();
             eventLogger.setEventType("User logged In");
             eventLogger.setUserId(userDTO.getUserId());
             EventModel eventModel =new EventModel();
             eventModel.addEvent(eventLogger);
-
-        } else {
+        }else {
 
             showAlert("Login Failed", "Invalid username or password.", AlertType.ERROR);
             Event eventLogger = new Event();
@@ -100,6 +107,27 @@ public class LoginController {
             EventModel eventModel =new EventModel();
             eventModel.addEvent(eventLogger);
         }
+        // UserDTO userDTO = userModel.getUserByUsername(username);
+        
+
+        // if (userDTO != null && userDTO.getPassword().equals(password)) {
+
+        //     openMainScreen(userDTO,event);
+        //     Event eventLogger = new Event();
+        //     eventLogger.setEventType("User logged In");
+        //     eventLogger.setUserId(userDTO.getUserId());
+        //     EventModel eventModel =new EventModel();
+        //     eventModel.addEvent(eventLogger);
+
+        // } else {
+
+        //     showAlert("Login Failed", "Invalid username or password.", AlertType.ERROR);
+        //     Event eventLogger = new Event();
+        //     eventLogger.setEventType("Attempt to login failed");
+        //     eventLogger.setUserId(null);
+        //     EventModel eventModel =new EventModel();
+        //     eventModel.addEvent(eventLogger);
+        // }
     }
 
     // Show alert message

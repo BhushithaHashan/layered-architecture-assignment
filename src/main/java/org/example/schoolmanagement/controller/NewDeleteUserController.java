@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.schoolmanagement.dto.UserDTO;
+import org.example.schoolmanagement.facad.UserFacad;
+import org.example.schoolmanagement.facad.UserFacadInterface;
 import org.example.schoolmanagement.model.UserModel;
 
 import java.io.IOException;
@@ -47,7 +49,8 @@ public class NewDeleteUserController {
 
     @FXML
     private TextField userid;
-    UserModel userModel = new UserModel();
+    // UserModel userModel = new UserModel();
+    private UserFacadInterface userFacad = new UserFacad();
     @FXML
     void delete(ActionEvent event) {
         int userID=-1;
@@ -55,9 +58,10 @@ public class NewDeleteUserController {
             userID = Integer.parseInt(userid.getText());
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
+            return;
         }
 
-        if(userModel.deleteUser(userID)){
+        if(userFacad.deleteUser(userID)){
             showAlert("Delete User","Successfull", Alert.AlertType.INFORMATION);
             userid.setText("");
 

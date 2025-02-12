@@ -75,4 +75,15 @@ public class StudentDAO implements CrudDAO<Student,Integer>{
             return Collections.emptyList();
         }
     }
+    @Override
+    public boolean isExist(Student entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isExist'");
+    }
+   
+    @Override
+    public Student findByName(String name) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByName'");
+    }
 }

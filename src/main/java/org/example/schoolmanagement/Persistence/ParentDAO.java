@@ -86,5 +86,17 @@ public class ParentDAO implements CrudDAO<Parent,Integer>{
             return Collections.emptyList();
         }
     }
+    @Override
+    public boolean isExist(Parent entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isExist'");
+    }
+    
+    
+    @Override
+    public Parent findByName(String name) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByName'");
+    }
     
 }

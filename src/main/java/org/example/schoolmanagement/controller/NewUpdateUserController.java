@@ -11,8 +11,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.schoolmanagement.dto.UserDTO;
+import org.example.schoolmanagement.facad.UserFacad;
+import org.example.schoolmanagement.facad.UserFacadInterface;
 import org.example.schoolmanagement.model.UserModel;
+import org.example.schoolmanagement.service.ServiceFactory;
+import org.example.schoolmanagement.service.ValidateService;
+import org.example.schoolmanagement.service.ValidatorInterface;
 import org.example.schoolmanagement.util.Role;
+import org.example.schoolmanagement.util.SERVICES;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
@@ -57,7 +63,9 @@ public class NewUpdateUserController {
 
     @FXML
     private TextField userid;
-
+    private UserDTO userInstance = new UserDTO();
+    private ValidatorInterface validator = ServiceFactory.getService(SERVICES.VALIDATESERVICE, null, null);
+    private UserFacadInterface userFacad = new UserFacad();
     @FXML
     void goToClass(ActionEvent event) {
         try {
@@ -161,27 +169,39 @@ public class NewUpdateUserController {
         email.setText("");
     }
     UserModel userModel = new UserModel();
-    UserDTO userDTO = new UserDTO();
+    private UserDTO userDTO = new UserDTO();
+    
+    
 
     @FXML
     void update(ActionEvent event) {
 
         userDTO.setRole(Role.ADMIN);
-        String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        // String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
-        if(pass.getText().isEmpty()||email.getText().isEmpty()||name.getText().isEmpty()||userid.getText().isEmpty()){
+        // if(pass.getText().isEmpty()||email.getText().isEmpty()||name.getText().isEmpty()||userid.getText().isEmpty()){
+        //     showAlert("Update Failed","Fields Cannot Be Empty", Alert.AlertType.ERROR);
+
+        // }
+        if(validator.isEmpty(pass.getText())||validator.isEmpty(email.getText())||validator.isEmpty(name.getText())||validator.isEmpty(userid.getText())){
             showAlert("Update Failed","Fields Cannot Be Empty", Alert.AlertType.ERROR);
-
+            return;
         }
-        if(!Pattern.matches(EMAIL_REGEX, email.getText())){
+        if (!validator.validateEmail(email.getText())) {
             showAlert("Invalid Email","Enter a valid E-mail!", Alert.AlertType.ERROR);
             email.clear();
+            return;
         }
+        // if(!Pattern.matches(EMAIL_REGEX, email.getText())){
+        //     showAlert("Invalid Email","Enter a valid E-mail!", Alert.AlertType.ERROR);
+        //     email.clear();
+        // }
         int id = -1;
         try{
             id = Integer.parseInt(userid.getText());
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
+            return;
         }
         String password = pass.getText();
         String mail = email.getText();
@@ -193,16 +213,28 @@ public class NewUpdateUserController {
         userDTO.setPassword(password);
         userDTO.setEmail(mail);
         userDTO.setUsername(userName);
-
-        if(userModel.updateUser(userDTO)){
+        
+        if (userFacad.updateUser(userDTO)) {
             showAlert("Success","Update Successfull", Alert.AlertType.ERROR);
             email.clear();
             pass.clear();
             userid.clear();
             name.clear();
-        }else{
-            showAlert("Failed","update Failed", Alert.AlertType.ERROR);
+            return;
         }
+        else{
+            showAlert("Failed","update Failed", Alert.AlertType.ERROR);
+            return;
+        }
+        // if(userModel.updateUser(userDTO)){
+        //     showAlert("Success","Update Successfull", Alert.AlertType.ERROR);
+        //     email.clear();
+        //     pass.clear();
+        //     userid.clear();
+        //     name.clear();
+        // }else{
+        //     showAlert("Failed","update Failed", Alert.AlertType.ERROR);
+        // }
 
 
 

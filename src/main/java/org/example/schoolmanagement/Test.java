@@ -1,12 +1,16 @@
 package org.example.schoolmanagement;
 
 import org.example.schoolmanagement.Persistence.CrudDAO;
+import org.example.schoolmanagement.Persistence.DAOFactory;
 import org.example.schoolmanagement.Persistence.ParentDAO;
 import org.example.schoolmanagement.Persistence.StudentDAO;
 import org.example.schoolmanagement.dto.EmailByParent;
 import org.example.schoolmanagement.dto.Parent;
 import org.example.schoolmanagement.dto.Student;
 import org.example.schoolmanagement.model.EmailByParentModel;
+import org.example.schoolmanagement.service.ServiceInterface;
+import org.example.schoolmanagement.service.StudentService;
+import org.example.schoolmanagement.util.DAO;
 import org.example.schoolmanagement.util.DBConnectionInterface;
 import org.example.schoolmanagement.util.DBFactory;
 
@@ -21,8 +25,10 @@ public class Test {
         // System.out.println(list.isEmpty());
         // System.out.println(list.get(0).getParentName());
         DBConnectionInterface dbConnection= DBFactory.getDataBase("mysql");
-        CrudDAO<Student,Integer> studentDAO = new StudentDAO(dbConnection.getConnection(),"sql");
-        Student st1 = studentDAO.findById(1);
+        CrudDAO<Student,Integer> studentDAO = DAOFactory.getDAO(DAO.STUDENTDAO,dbConnection.getConnection(),"sql");
+        //Student st1 = studentDAO.findById(1);
+        ServiceInterface<Student,Integer> service = new StudentService(studentDAO);
+        Student st1 = service.find(1);
         System.out.println(st1.getFirstName());
         st1.setFirstName("Yoshitha");
         System.out.println(st1.getLastName());
@@ -30,7 +36,7 @@ public class Test {
         Student st2 = studentDAO.findById(1);
         System.out.println(st2.getFirstName());
         Parent p1;
-        CrudDAO<Parent,Integer> parentDao= new ParentDAO(dbConnection.getConnection(), "sql");
+        CrudDAO<Parent,Integer> parentDao= DAOFactory.getDAO(DAO.PARENTDAO,dbConnection.getConnection(),"sql");
         p1 = parentDao.findById(1);
         System.out.println(p1.getFirstName());
         p1.setFirstName("Mahinda");

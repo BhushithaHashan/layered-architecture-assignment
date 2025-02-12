@@ -20,7 +20,15 @@ public class SQLExecutor implements DatabaseExecutor{
     public int executeUpdate(String sql, Object... params) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(sql);
         setParameters(stmt, params);
-        return stmt.executeUpdate(); // Returns the number of affected rows
+        int rowsAffected = stmt.executeUpdate();
+        if (rowsAffected > 0) {
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    TransactionKeyUtil.getKeyInstance().setKey(generatedKeys.getInt(1)); // Get the first column of the generated keys (e.g., student_id)
+                }
+            }
+        }
+        return rowsAffected;// Returns the number of affected rows
     }
 
     // Handles setting parameters in PreparedStatement

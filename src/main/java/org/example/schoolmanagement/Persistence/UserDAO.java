@@ -26,9 +26,11 @@ public class UserDAO implements CrudDAO<UserDTO,Integer>{
     public boolean save(UserDTO entity) {
         String query = "INSERT INTO user (username, email, password, role, specific_attribute) VALUES (?, ?, ?, ?, ?)";
         try {
-            return executor.executeUpdate(query,entity.getUsername(),entity.getEmail(),entity.getPassword(),entity.getRole(),entity.getSpecificAttribute())>0;
+            return executor.executeUpdate(query,entity.getUsername(),entity.getEmail(),entity.getPassword(),Role.ADMIN.getRole(),null)>0;
         } catch (SQLException e) {
             // TODO: handle exception
+            e.printStackTrace();
+            System.err.println("Error adding user: " + e.getMessage());
             return false;
         }
     }
@@ -79,6 +81,39 @@ public class UserDAO implements CrudDAO<UserDTO,Integer>{
             
         }
         return Collections.emptyList();
+    }
+    @Override
+    public boolean isExist(UserDTO entity) {
+        // TODO Auto-generated method stub
+        if(entity == null){
+            return false;
+        }
+        String query = "SELECT COUNT(*) FROM user WHERE username = ?";
+        try {
+            ResultSet rs = executor.executeQuery(query, entity.getUsername());
+            if (rs.next()) {
+                return rs.getInt(1)>0;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return false;
+    }
+    @Override
+    public UserDTO findByName(String name) {
+        String query ="SELECT * FROM user WHERE username = ?";
+        try {
+            ResultSet rs = executor.executeQuery(query, name);
+            if (rs.next()) {
+                return new UserDTO(rs.getInt("user_id"),rs.getString("username"),rs.getString("email"), rs.getString("password"),Role.ADMIN, null);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            
+        }
+        return null;
     }
 
 }
