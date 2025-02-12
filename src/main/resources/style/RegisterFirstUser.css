@@ -1,0 +1,25 @@
+/* Text Styling */
+#titleOne {
+    -fx-fill: black;
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    
+}
+
+
+/* Rectangle Shadow Effect */
+#rectangle {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 25, 0.3, 5, 5); /* Soft and subtle shadow */
+ 
+   
+}
+
+.button:hover {
+    -fx-background-color: #51da55;
+    -fx-text-fill: black;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(81, 218, 85, 0.7), 15, 0.4, 0, 0);
+}
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.">
+
+    <!-- Top Section: Title -->
+    <top>
+        <HBox alignment="CENTER" id="top-bar">
+            <Label text="Class Settings" id="title-label" />
+        </HBox>
+    </top>
+
+    <!-- Center Section: Main Buttons -->
+    <center>
+        <VBox alignment="CENTER" spacing="15" id="main-buttons">
+            <Button text="Add a Class" id="add-class-button" />
+            <Button text="Remove a Class" id="remove-class-button" />
+            <Button text="Update a Class" id="update-class-button" />
+            <Button text="Get All Students" id="get-students-button" />
+            <Button text="Get Teacher" id="get-teacher-button" />
+        </VBox>
+    </center>
+
+    <!-- Bottom Section: Navigation Buttons -->
+    <bottom>
+        <HBox spacing="25" alignment="CENTER" id="bottom-bar">
+            <Button text="Home" id="home-button" />
+            <Button text="Back" id="back-button" />
+            <Button text="Log Out" id="logout-button" />
+        </HBox>
+    </bottom>
+</BorderPane>

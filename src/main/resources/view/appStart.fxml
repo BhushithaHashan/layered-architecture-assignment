@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../style/appStart.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.schoolmanagement.controller.AppStartController">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1200.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/5174094.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="800.0" prefWidth="501.0" style="-fx-background-color: white;">
+         <children>
+            <Rectangle height="800.0" opacity="0.29" stroke="#e5d52006" strokeType="INSIDE" strokeWidth="0.0" width="525.0">
+               <fill>
+                  <LinearGradient endX="0.4904761904761906" endY="0.8714285714285714" startX="0.23333333333333334" startY="0.32857142857142857">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.4338853359222412" green="0.11999999731779099" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color green="0.15131579339504242" blue="0.6052631735801697" opacity="0.6299999952316284" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <AnchorPane fx:id="welcomePane" layoutX="-83.0" layoutY="178.0" prefHeight="391.0" prefWidth="518.0" style="-fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 100;">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </AnchorPane>
+            <Button fx:id="btn_appstart" layoutX="14.0" layoutY="448.0" mnemonicParsing="false" onAction="#appInitialize" prefHeight="70.0" prefWidth="264.0" style="-fx-background-color: #631cd7; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-width: 2; -fx-border-color: blac #631cd7k;" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Ramabhadra" size="23.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.4082094728946686" green="0.15484893321990967" blue="0.8157894611358643" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Text fx:id="text_takemeinside" fill="WHITE" layoutX="58.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TAKE ME INSIDE" textAlignment="CENTER">
+               <font>
+                  <Font name="Noto Sans Mono CJK TC Bold" size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="text_welcome" layoutX="33.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" textAlignment="CENTER" wrappingWidth="180.07200622558594">
+               <font>
+                  <Font name="Noto Sans CJK SC Bold" size="36.0" />
+               </font>
+            </Text>
+            <Text fx:id="text_schoolmanagementsystem" fill="#190822" layoutX="28.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCHOOL MANAGEMENT SYSTEM" wrappingWidth="414.07200622558594">
+               <font>
+                  <Font name="Noto Sans Mono CJK HK Bold" size="51.0" />
+               </font>
+            </Text>
+            <Text fx:id="text_to" layoutX="108.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TO" textAlignment="CENTER">
+               <font>
+                  <Font name="Noto Sans CJK SC Bold" size="24.0" />
+               </font>
+            </Text>
+            <Line endX="100.0" layoutX="-1.0" layoutY="251.0" startX="29.0" />
+            <Line endX="100.0" layoutX="120.0" layoutY="250.0" startX="29.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,50 @@
+/* Text Styling */
+#text_welcome {
+    -fx-fill: linear-gradient(from 0% 0% to 100% 100%, #4b0082, #8a2be2); /* Rich gradient of indigo to blue-violet */
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+}
+
+#text_schoolmanagementsystem {
+    
+    -fx-font-size: 40px; /* Slightly larger size for emphasis */
+    -fx-font-family: "Poppins SemiBold"; /* Clean, modern sans-serif font */
+    -fx-font-weight: bold;
+    /*-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 3, 3); /* Subtle shadow for depth */
+}
+
+#text_takemeinside {
+    -fx-fill: white; /* Simple white text */
+    -fx-font-size: 24px;
+}
+#text_to {
+    -fx-fill: dark yellow; /* Simple white text */
+    -fx-font-size: 24px;
+}
+
+/* Button Hover Effect */
+#btn_appstart {
+    -fx-background-color: #631cd7; /* Original button color */
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-border-color: #631cd7;
+    -fx-border-width: 2;
+    -fx-cursor: hand;
+}
+
+#btn_appstart:hover {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6a1cb8, #4614a3); /* Slightly darker gradient */
+    -fx-effect: dropshadow(gaussian, rgba(99, 28, 215, 0.6), 20, 0.8, 0, 0); /* Smooth glowing shadow */
+    -fx-scale-x: 1.07; /* Slight grow effect */
+    -fx-scale-y: 1.07;
+    -fx-border-color: #ffffff; /* White border on hover */
+}
+
+/* Rectangle Shadow Effect */
+#rectangle {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 25, 0.3, 5, 5); /* Soft and subtle shadow */
+    -fx-fill: white; /* Keep original fill */
+    -fx-arc-width: 10px; /* Slightly rounder corners */
+    -fx-arc-height: 10px;
+}
+

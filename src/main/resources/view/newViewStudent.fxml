@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #dddd;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.schoolmanagement.controller.NewStudentViewController">
+   <children>
+      <AnchorPane layoutX="259.0" layoutY="11.0" prefHeight="778.0" prefWidth="934.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+         <children>
+            <Line endX="100.0" layoutX="-132.0" layoutY="274.0" startX="-100.0" />
+            <Line endX="100.0" layoutX="-132.0" layoutY="327.0" startX="-100.0" />
+            <Line endX="100.0" layoutX="-132.0" layoutY="380.0" startX="-100.0" />
+            <Line endX="100.0" layoutX="-132.0" layoutY="229.0" startX="-100.0" />
+            <Line endX="100.0" layoutX="-132.0" layoutY="428.0" startX="-100.0" />
+            <Label layoutX="34.0" layoutY="50.0" text="View Students" textAlignment="CENTER">
+               <font>
+                  <Font name="DejaVu Sans Mono Bold" size="36.0" />
+               </font>
+            </Label>
+            <Line endX="792.0" layoutX="123.0" layoutY="95.0" startX="-100.0" />
+            <Button fx:id="logout" layoutX="796.0" layoutY="57.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: white; -fx-border-color: black;" text="Log Out" textAlignment="CENTER">
+               <font>
+                  <Font name="DejaVu Sans Mono" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ScrollPane layoutX="23.0" layoutY="132.0" prefHeight="569.0" prefWidth="868.0">
+               <content>
+                  <TableView fx:id="userTable" prefHeight="566.0" prefWidth="867.0">
+                    <columns>
+                      <TableColumn fx:id="sid" prefWidth="75.0" sortable="false" text="SID" />
+                      <TableColumn fx:id="firstName" prefWidth="197.0" sortable="false" text="First Name" />
+                        <TableColumn fx:id="lastName" prefWidth="254.0" sortable="false" text="Last Name" />
+                        <TableColumn fx:id="dob" prefWidth="179.0" sortable="false" text="DOB" />
+                        <TableColumn fx:id="regDate" prefWidth="160.0" text="Registered Date" />
+                    </columns>
+                  </TableView>
+               </content>
+            </ScrollPane>
+         </children></AnchorPane>
+      <GridPane layoutX="31.0" layoutY="139.0" prefHeight="291.0" prefWidth="174.0" vgap="8.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="home" mnemonicParsing="false" onAction="#goToHome" prefHeight="70.0" prefWidth="277.0" style="-fx-background-color: transperan;" text="Home">
+               <font>
+                  <Font name="DejaVu Sans Mono" size="17.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.37164750695228577" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="mails" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToMails" prefHeight="84.0" prefWidth="174.0" style="-fx-background-color: transperan;" text="Mails" GridPane.rowIndex="5">
+               <font>
+                  <Font name="DejaVu Sans Mono" size="17.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.37164750695228577" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="perent" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToPerent" prefHeight="70.0" prefWidth="277.0" style="-fx-background-color: transperan;" text="Perent" GridPane.rowIndex="4">
+               <font>
+                  <Font name="DejaVu Sans Mono" size="17.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.37164750695228577" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="user" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToUser" prefHeight="70.0" prefWidth="277.0" style="-fx-background-color: transperan;" text="User" GridPane.rowIndex="3">
+               <font>
+                  <Font name="DejaVu Sans Mono" size="17.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.37164750695228577" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="student" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToStudent" prefHeight="70.0" prefWidth="277.0" style="-fx-background-color: transperan;" text="Student" GridPane.rowIndex="2">
+               <font>
+                  <Font name="DejaVu Sans Mono" size="17.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.37164750695228577" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="classroom" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToClass" prefHeight="70.0" prefWidth="277.0" style="-fx-background-color: transperan;" text="Class" GridPane.rowIndex="1">
+               <font>
+                  <Font name="DejaVu Sans Mono" size="17.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.37164750695228577" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </GridPane>
+      <GridPane layoutX="45.0" layoutY="137.0" prefHeight="297.0" prefWidth="44.0" vgap="8.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/home.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+               <image>
+                  <Image url="@../icons/family.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../icons/man.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../icons/graduated.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../icons/training.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
+               <image>
+                  <Image url="@../icons/email.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <Label layoutX="45.0" layoutY="73.0" text="Services">
+         <font>
+            <Font name="DejaVu Sans Mono Bold" size="20.0" />
+         </font>
+      </Label>
+      <Line endX="-100.0" endY="355.0" layoutX="125.0" layoutY="86.0" startX="-100.0" />
+      <Line endX="-80.0" layoutX="126.0" layoutY="87.0" startX="-100.0" />
+      <Line endX="100.0" layoutX="124.0" layoutY="183.0" startX="-100.0" />
+   </children>
+</AnchorPane>

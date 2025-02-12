@@ -1,0 +1,105 @@
+/* General Reset */
+* {
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 16px;
+    -fx-base: #fff;
+    -fx-padding: 0;
+    -fx-margin: 0;
+    -fx-background-color: transparent;
+}
+
+/* Overall layout */
+BorderPane {
+    -fx-background-color: #f8f8f8;
+}
+
+/* Top Bar */
+#top-bar {
+    -fx-background-color: #4285F4;
+    -fx-padding: 20px;
+}
+
+#title-label {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-family: "Roboto", sans-serif;
+}
+
+/* Buttons */
+Button {
+    -fx-background-color: #34a853;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-min-width: 200px;
+    -fx-pref-height: 50px;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.1, 0, 4);
+    -fx-cursor: hand;
+}
+
+Button:hover {
+    -fx-background-color: #0f9d58;
+}
+
+Button:pressed {
+    -fx-background-color: #0b8043;
+}
+
+#logout-button {
+    -fx-background-color: #ea4335;
+}
+
+#logout-button:hover {
+    -fx-background-color: #d1352b;
+}
+
+/* Layout for Buttons */
+#main-buttons {
+    -fx-alignment: center;
+    -fx-padding: 40px;
+}
+
+#bottom-bar {
+    -fx-padding: 20px;
+    -fx-background-color: #f1f1f1;
+}
+
+/* Hover Effects for Home/Back Buttons */
+#home-button, #back-button {
+    -fx-background-color: #fbbc05;
+}
+
+#home-button:hover, #back-button:hover {
+    -fx-background-color: #f07b00;
+}
+
+#home-button, #back-button, #logout-button {
+    -fx-background-radius: 30px;
+    -fx-min-width: 140px;
+    -fx-pref-height: 45px;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+}
+
+/* Minimal Padding and Margin */
+VBox, HBox {
+    -fx-alignment: center;
+    -fx-spacing: 15px;
+}
+
+/* Button Sizing */
+Button {
+    -fx-max-width: 250px;
+    -fx-max-height: 60px;
+}
+
+/* Font settings for modern style */
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: 400;
+}
+

@@ -1,0 +1,76 @@
+/* General Styles */
+.root {
+    -fx-font-family: "DejaVu Sans Mono";
+}
+
+/* Welcome Label (Cursive and Stylish) */
+#vbox .label {
+    -fx-font-family: "Brush Script MT", cursive;  /* Corrected Cursive font */
+    -fx-text-fill: #333333;  /* Dark gray color */
+    -fx-font-size: 28px;  /* Reduced font size for a more appropriate look */
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 15 0;  /* Space below */
+}
+
+/* App Name Label */
+#app_name {
+    -fx-font-family: "DejaVu Sans Mono Bold";
+    -fx-text-fill: #d629c8;  /* Original color */
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-padding: 20 0 0 0;
+}
+
+/* Text Fields */
+.text-field, .password-field {
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-width: 0 0 2 0; /* Bottom border */
+    -fx-font-size: 18px;
+    -fx-padding: 10px;
+    -fx-pref-width: 338px;
+    -fx-background-insets: 0, 0;
+}
+
+/* Login Button */
+#login_btn {
+    -fx-background-color: linear-gradient(to bottom, #ffffff00, #fffdfd00); /* Green gradient for a modern look */
+    -fx-border-radius: 20px; /* Rounded corners for a sleek effect */
+    -fx-background-radius: 20px;
+    -fx-border-color: #000000;
+    -fx-text-fill: rgb(0, 0, 0);  /* White text */
+    -fx-font-size: 14px;  /* Adjusted to fit nicely */
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px; /* Adequate padding for a more spacious look */
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0, 0, 5); /* Shadow effect */
+}
+
+#login_btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #000000, #333333);  /* Darker green on hover */
+    -fx-text-fill :rgb(255, 255, 255);
+
+}
+
+#login_btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #388e3c, #2c6f31);  /* Darkest green when pressed */
+    -fx-border-color: #2c6f31;
+}
+
+/* Rectangle Styling (Popped-up effect) */
+#rectangle {
+    -fx-fill: #f4f4f4;  /* Light background to make it match the modern look */
+    -fx-stroke: #888888;  /* Subtle border color */
+    -fx-stroke-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 5);  /* Subtle shadow for popped-up effect */
+    -fx-arc-width: 20; /* Rounded corners for a modern feel */
+    -fx-arc-height: 20;
+}
+
+/* Focused Text Fields */
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #4CAF50; /* Change border color when focused */
+    -fx-background-color: #f1f1f1; /* Slight background color change on focus */
+}

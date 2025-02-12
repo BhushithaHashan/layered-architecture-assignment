@@ -1,0 +1,29 @@
+/* Hover effect for the Sign In button */
+#signup {
+    -fx-background-color: white;    /* Keep the original background */
+    -fx-background-radius: 10;      /* Keep rounded corners */
+    -fx-text-fill: black;           /* Keep text color */
+    -fx-effect: null;               /* No shadow by default */
+    -fx-transition: 0.3s;           /* Smooth transition for hover */
+}
+
+#signup:hover {
+    -fx-effect: dropshadow(gaussian, rgba(153, 0, 0, 0.4), 10, 0, 0, 4); /* Elegant red shadow */
+    -fx-scale-x: 1.05;              /* Slightly increase size */
+    -fx-scale-y: 1.05;              /* Slightly increase size */
+}
+
+/* Hover effect for the Forgot Password button */
+#forgotPass {
+    -fx-background-color: transparent; /* Keep original */
+    -fx-text-fill: white;              /* Keep text white */
+    -fx-underline: true;               /* Keep underline */
+    -fx-effect: null;                  /* No shadow by default */
+    -fx-transition: 0.3s;              /* Smooth transition for hover */
+}
+
+#forgotPass:hover {
+    -fx-effect: dropshadow(gaussian, rgba(153, 0, 0, 0.4), 10, 0, 0, 2); /* Elegant red shadow */
+    -fx-scale-x: 1.1; /* Slightly increase size */
+    -fx-scale-y: 1.1; /* Slightly increase size */
+}
